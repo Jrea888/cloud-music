@@ -1,9 +1,26 @@
 import React from 'react'
+import {Link, useRoutes} from 'react-router-dom'
+import routerConfig from '@/router'
 
 function App() {
     return (
         <div className="App">
-            <h1>Hello React 18</h1>
+            <div style={{display: 'flex', alignItems: 'center', gap: '12px'}}>
+                <div>
+                    <Link to="/discover">发现音乐</Link>
+                </div>
+                <div>
+                    <Link to="/music">我的音乐</Link>
+                </div>
+                <div>
+                    <Link to="/focus">关注</Link>
+                </div>
+                <div>
+                    <Link to="/download">下载客户端</Link>
+                </div>
+            </div>
+
+            <div className="main">{useRoutes(routerConfig)}</div>
         </div>
     )
 }

@@ -1,14 +1,39 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom/client'
+import {BrowserRouter} from 'react-router-dom'
+
+// 样式引入
 import 'normalize.css'
 import './assets/css/index.less'
 
 import App from '@/App'
+import {ErrorBoundary} from 'react-error-boundary'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
     <React.StrictMode>
-        <App />
+        <BrowserRouter>
+            <ErrorBoundary fallbackRender={() => <div>页面加载错误了！</div>}>
+                {/* 懒加载路由 所以使用Suspense组件 */}
+                <Suspense
+                    fallback={
+                        <div
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                height: '100vh',
+                                fontSize: '16px'
+                            }}
+                        >
+                            加载中...
+                        </div>
+                    }
+                >
+                    <App />
+                </Suspense>
+            </ErrorBoundary>
+        </BrowserRouter>
     </React.StrictMode>
 )
