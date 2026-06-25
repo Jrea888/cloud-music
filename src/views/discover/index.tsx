@@ -1,4 +1,4 @@
-import React, {FC, memo, ReactNode, useState} from 'react'
+import React, {FC, memo, ReactNode, Suspense, useState} from 'react'
 import {Link, Outlet} from 'react-router-dom'
 
 interface IProps {
@@ -21,7 +21,9 @@ const Discover: FC<IProps> = memo(props => {
                 <Link to="/discover/release">新碟上架</Link>
             </div>
             <div className="" style={{marginLeft: '12px'}}>
-                <Outlet />
+                <Suspense>
+                    <Outlet />
+                </Suspense>
             </div>
         </div>
     )

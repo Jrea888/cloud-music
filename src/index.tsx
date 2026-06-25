@@ -1,13 +1,15 @@
 import React, {Suspense} from 'react'
 import ReactDOM from 'react-dom/client'
+import {Provider} from 'react-redux'
 import {BrowserRouter} from 'react-router-dom'
+import {ErrorBoundary} from 'react-error-boundary'
 
 // 样式引入
 import 'normalize.css'
 import './assets/css/index.less'
 
 import App from '@/App'
-import {ErrorBoundary} from 'react-error-boundary'
+import store from '@/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
@@ -31,7 +33,9 @@ root.render(
                         </div>
                     }
                 >
-                    <App />
+                    <Provider store={store}>
+                        <App />
+                    </Provider>
                 </Suspense>
             </ErrorBoundary>
         </BrowserRouter>
